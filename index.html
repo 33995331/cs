@@ -1,722 +1,418 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Green Network - Protect Earth</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>不忘初心 牢记使命 | 党建宣传专题网</title>
     <style>
+        /* --- 红色主题变量定义 --- */
+        :root {
+            /* 标准中国红参考色 */
+            --party-red: #ce0000; 
+            --party-dark-red: #a30000;
+            --party-gold: #f4d000; /* 金色点缀 */
+            --text-main: #333333;
+            --text-light: #666666;
+            --bg-light: #fffdfd; /* 极浅的红色倾向背景 */
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        :root {
-            --primary: #2e7d32;
-            --secondary: #4caf50;
-            --accent: #8bc34a;
-            --light: #e8f5e9;
-            --dark: #1b5e20;
-            --text: #333333;
-            --white: #ffffff;
         }
 
         body {
-            background-color: var(--light);
-            color: var(--text);
+            font-family: "SimSun", "Songti SC", "Microsoft YaHei", serif; /* 宋体/衬线体更显庄重 */
             line-height: 1.6;
+            color: var(--text-main);
+            background-color: #f5f5f5;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* --- 顶部 Header --- */
+        .top-bar {
+            background-color: var(--party-dark-red);
+            color: rgba(255,255,255,0.8);
+            padding: 8px 0;
+            font-size: 14px;
+            text-align: right;
         }
 
         header {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: var(--white);
-            padding: 1rem 0;
+            background: url('https://images.unsplash.com/photo-1572916170617-66bc4242e24b?q=80&w=2000&auto=format&fit=crop') no-repeat center top; 
+            background-size: cover;
+            /* 注意：实际使用时建议替换为红绸带或纯红背景图 */
+            background-color: var(--party-red);
+            height: 120px;
+            display: flex;
+            align-items: center;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo-text h1 {
+            color: var(--party-gold);
+            font-size: 38px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+
+        .logo-text p {
+            color: white;
+            font-size: 16px;
+            letter-spacing: 5px;
+            margin-top: 5px;
+        }
+
+        /* --- 导航栏 --- */
+        nav {
+            background-color: var(--party-red);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             position: sticky;
             top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+            border-bottom: 3px solid var(--party-gold);
         }
 
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .nav-container {
+        .nav-list {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            justify-content: center;
         }
 
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.8rem;
-            font-weight: 700;
+        .nav-list li {
+            flex: 1;
+            text-align: center;
         }
 
-        .logo i {
-            font-size: 2rem;
+        .nav-list a {
+            display: block;
+            color: white;
+            padding: 18px 0;
+            font-size: 18px;
+            font-weight: bold;
         }
 
-        nav ul {
-            display: flex;
-            list-style: none;
+        .nav-list a:hover {
+            background-color: var(--party-dark-red);
+            color: var(--party-gold);
         }
 
-        nav ul li {
-            margin-left: 2rem;
-        }
-
-        nav ul li a {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            padding: 0.5rem 0;
+        /* --- 轮播/Banner区域 --- */
+        .banner {
             position: relative;
-        }
-
-        nav ul li a:hover {
-            color: var(--accent);
-        }
-
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--accent);
-            transition: width 0.3s ease;
-        }
-
-        nav ul li a:hover::after {
-            width: 100%;
-        }
-
-        .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80');
+            height: 500px;
+            background-color: #ddd;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            background-image: linear-gradient(rgba(163, 0, 0, 0.6), rgba(163, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1533235773822-2f0858e9944a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
             background-size: cover;
             background-position: center;
-            height: 80vh;
-            display: flex;
-            align-items: center;
-            text-align: center;
-            color: var(--white);
         }
 
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
+        .banner-content h2 {
+            font-size: 56px;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
 
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: var(--accent);
-            color: var(--white);
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .btn:hover {
-            background-color: var(--primary);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-        }
-
-        section {
-            padding: 5rem 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            position: relative;
+        .banner-content .subtitle {
+            font-size: 24px;
+            background-color: var(--party-gold);
+            color: var(--party-red);
+            padding: 10px 30px;
+            border-radius: 4px;
+            font-weight: bold;
             display: inline-block;
         }
 
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background-color: var(--accent);
-            border-radius: 2px;
+        /* --- 内容模块通用样式 --- */
+        .section {
+            padding: 60px 0;
+            background: white;
+            margin-bottom: 20px;
         }
 
-        .section-title p {
-            color: var(--text);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .about-img {
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .about-img img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.5s ease;
-        }
-
-        .about-img:hover img {
-            transform: scale(1.05);
-        }
-
-        .about-text h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: var(--dark);
-        }
-
-        .about-text p {
-            margin-bottom: 1.5rem;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 2rem 1rem;
-            background-color: var(--white);
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .stat-item:hover {
-            transform: translateY(-10px);
-        }
-
-        .stat-item i {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .stat-item h3 {
-            font-size: 2.5rem;
-            color: var(--dark);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-item p {
-            color: var(--text);
-        }
-
-        .initiatives {
-            background-color: var(--white);
-        }
-
-        .initiatives-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .initiative-card {
-            background-color: var(--light);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .initiative-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .initiative-img {
-            height: 200px;
-            overflow: hidden;
-        }
-
-        .initiative-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .initiative-card:hover .initiative-img img {
-            transform: scale(1.1);
-        }
-
-        .initiative-content {
-            padding: 1.5rem;
-        }
-
-        .initiative-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--dark);
-        }
-
-        .initiative-content p {
-            margin-bottom: 1.5rem;
-        }
-
-        .cta {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: var(--white);
-            text-align: center;
-            padding: 5rem 0;
-        }
-
-        .cta h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .cta p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta .btn {
-            background-color: var(--white);
-            color: var(--primary);
-        }
-
-        .cta .btn:hover {
-            background-color: var(--accent);
-            color: var(--white);
-        }
-
-        footer {
-            background-color: var(--dark);
-            color: var(--white);
-            padding: 3rem 0 1rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-column h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
+        .section-header {
+            border-bottom: 2px solid #eee;
+            margin-bottom: 30px;
             position: relative;
             padding-bottom: 10px;
         }
 
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 2px;
-            background-color: var(--accent);
+        .section-header h3 {
+            font-size: 26px;
+            color: var(--party-red);
+            display: inline-block;
+            border-bottom: 3px solid var(--party-red);
+            padding-bottom: 8px;
+            margin-bottom: -12px; /* 让红线盖住灰线 */
         }
 
-        .footer-column p {
-            margin-bottom: 1rem;
+        /* --- 新闻网格 --- */
+        .news-grid {
+            display: grid;
+            grid-template-columns: 40% 60%; /* 左图右文布局 */
+            gap: 30px;
         }
 
-        .footer-links {
-            list-style: none;
+        .headline-news img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 4px;
         }
 
-        .footer-links li {
-            margin-bottom: 0.8rem;
+        .headline-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 15px 0 10px;
+            color: var(--party-dark-red);
         }
 
-        .footer-links li a {
-            color: var(--light);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .footer-links li a:hover {
-            color: var(--accent);
-            padding-left: 5px;
-        }
-
-        .social-links {
+        .news-list li {
+            border-bottom: 1px dashed #ddd;
+            padding: 12px 0;
             display: flex;
-            gap: 1rem;
+            justify-content: space-between;
         }
 
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: var(--white);
-            text-decoration: none;
-            transition: all 0.3s ease;
+        .news-list li:before {
+            content: "■";
+            color: var(--party-red);
+            margin-right: 10px;
+            font-size: 12px;
+            vertical-align: middle;
         }
 
-        .social-links a:hover {
-            background-color: var(--accent);
-            transform: translateY(-5px);
+        .news-list a:hover {
+            color: var(--party-red);
+            text-decoration: underline;
+        }
+
+        .date { color: #999; font-size: 14px; }
+
+        /* --- 专题展示 (三列) --- */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .feature-box {
+            border: 1px solid #eee;
+            background: #fff;
+            transition: 0.3s;
+        }
+
+        .feature-box:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-color: var(--party-red);
+        }
+
+        .feature-header {
+            background: var(--party-red);
+            color: white;
+            padding: 10px 15px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .feature-content {
+            padding: 20px;
+        }
+        
+        .feature-content img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+
+        /* --- 精神语录 --- */
+        .quote-section {
+            background-color: #fcf1f1; /* 浅红背景 */
+            padding: 50px 0;
+            text-align: center;
+            border-top: 1px solid #eecaca;
+            border-bottom: 1px solid #eecaca;
+        }
+
+        .quote-text {
+            font-size: 28px;
+            color: var(--party-red);
+            font-weight: bold;
+            font-family: "Kaiti SC", "楷体", serif;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--party-dark-red);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.8);
+            margin: 0 10px;
         }
 
         .copyright {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 20px;
+            font-size: 14px;
+            opacity: 0.7;
         }
 
-        .mobile-menu {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        @media (max-width: 992px) {
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .initiatives-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .footer-content {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
+        /* --- 响应式 --- */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            nav ul {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: var(--primary);
-                flex-direction: column;
-                padding: 1rem 0;
-                text-align: center;
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-            }
-            
-            nav ul.active {
-                display: flex;
-            }
-            
-            nav ul li {
-                margin: 0;
-                padding: 0.8rem 0;
-            }
-            
-            .mobile-menu {
-                display: block;
-            }
-            
-            .initiatives-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .stats {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Animation for stats counter */
-        .counter {
-            transition: all 0.5s ease;
+            .news-grid { grid-template-columns: 1fr; }
+            .features-grid { grid-template-columns: 1fr; }
+            .nav-list { flex-direction: column; }
+            .banner-content h2 { font-size: 32px; }
+            header { height: auto; padding: 20px 0; }
+            .header-content { flex-direction: column; text-align: center; }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
+
+    <div class="top-bar">
+        <div class="container">
+            <span>今天是：2025年6月15日 星期日 | 欢迎访问本站</span>
+        </div>
+    </div>
+
     <header>
-        <div class="container nav-container">
-            <div class="logo">
-                <i class="fas fa-seedling"></i>
-                <span>Green Network</span>
+        <div class="container header-content">
+            <div style="width: 80px; height: 80px; background: var(--party-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--party-red); font-size: 40px; font-weight: bold;">☭</div>
+            <div class="logo-text">
+                <h1>红旗飘扬</h1>
+                <p>新时代党建宣传与学习教育平台</p>
             </div>
-            <nav>
-                <div class="mobile-menu">
-                    <i class="fas fa-bars"></i>
-                </div>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#initiatives">Initiatives</a></li>
-                    <li><a href="#get-involved">Get Involved</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container hero-content">
-            <h1>Protect Our Planet, Preserve Our Future</h1>
-            <p>Join the global movement to create a sustainable world through conservation, education, and community action.</p>
-            <a href="#get-involved" class="btn">Join Our Network</a>
+    <nav>
+        <div class="container">
+            <ul class="nav-list">
+                <li><a href="#">首页</a></li>
+                <li><a href="#">党建要闻</a></li>
+                <li><a href="#">理论学习</a></li>
+                <li><a href="#">党史长廊</a></li>
+                <li><a href="#">组织建设</a></li>
+                <li><a href="#">风采展示</a></li>
+                <li><a href="#">廉政建设</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="banner">
+        <div class="banner-content">
+            <h2>不忘初心 牢记使命</h2>
+            <div class="subtitle">为中国人民谋幸福 为中华民族谋复兴</div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about">
+    <section class="quote-section">
         <div class="container">
-            <div class="section-title">
-                <h2>About Green Network</h2>
-                <p>We are a global community dedicated to environmental protection and sustainable development.</p>
-            </div>
-            <div class="about-content">
-                <div class="about-img">
-                    <img src="https://images.unsplash.com/photo-1507591064344-4c6ce005b128?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Team planting trees">
-                </div>
-                <div class="about-text">
-                    <h3>Our Mission</h3>
-                    <p>Green Network is committed to creating a sustainable future by protecting natural ecosystems, promoting renewable energy, and empowering communities to take environmental action.</p>
-                    <p>Founded in 2010, we've grown from a small grassroots organization to an international network with over 50,000 members across 120 countries.</p>
-                    <p>Our approach combines scientific research, community engagement, and policy advocacy to address the most pressing environmental challenges of our time.</p>
-                    <a href="#" class="btn">Learn More</a>
-                </div>
-            </div>
-            <div class="stats">
-                <div class="stat-item">
-                    <i class="fas fa-tree"></i>
-                    <h3 class="counter" data-target="2500000">0</h3>
-                    <p>Trees Planted</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-users"></i>
-                    <h3 class="counter" data-target="50000">0</h3>
-                    <p>Active Members</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-globe-americas"></i>
-                    <h3 class="counter" data-target="120">0</h3>
-                    <p>Countries Reached</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-recycle"></i>
-                    <h3 class="counter" data-target="1500">0</h3>
-                    <p>Cleanup Projects</p>
-                </div>
-            </div>
+            <div class="quote-text">“心中的信仰，脚下的力量”</div>
         </div>
     </section>
 
-    <!-- Initiatives Section -->
-    <section class="initiatives" id="initiatives">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Initiatives</h2>
-                <p>Discover the key programs and projects we're implementing to protect our planet.</p>
+    <div class="container section">
+        <div class="news-grid">
+            <div class="headline-news">
+                <div class="section-header">
+                    <h3>图片报道</h3>
+                </div>
+                <img src="https://images.unsplash.com/photo-1516216628859-9bcce59d6909?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="会议图片">
+                <div class="headline-title">
+                    <a href="#">深入学习贯彻重要精神，凝心聚力促发展</a>
+                </div>
+                <p style="color: #666; font-size: 14px;">近日，我单位组织全体党员干部召开了专题学习会议，深入探讨了...</p>
             </div>
-            <div class="initiatives-grid">
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://dialogue.earth/content/uploads/2021/04/lessons-from-the-rush-to-reforest-china-dialogue-2400x1599.jpg" alt="Reforestation">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Global Reforestation</h3>
-                        <p>Planting millions of trees worldwide to restore ecosystems, combat climate change, and protect biodiversity.</p>
-                        <a href="#" class="btn">Learn More</a>
+
+            <div class="news-list-box">
+                <div class="section-header">
+                    <h3>党建动态</h3>
+                    <a href="#" style="float: right; font-size: 14px; color: #999; margin-top: 10px;">更多 &gt;</a>
+                </div>
+                <ul class="news-list">
+                    <li><a href="#">【学习】 全面推进基层党组织标准化规范化建设</a> <span class="date">06-14</span></li>
+                    <li><a href="#">【活动】 开展“红色之旅”主题党日活动圆满结束</a> <span class="date">06-12</span></li>
+                    <li><a href="#">【纪律】 严明政治纪律，筑牢思想防线专题讲座</a> <span class="date">06-10</span></li>
+                    <li><a href="#">【模范】 学习身边榜样，争做合格党员</a> <span class="date">06-08</span></li>
+                    <li><a href="#">【通知】 关于举办党史知识竞赛的通知</a> <span class="date">06-05</span></li>
+                    <li><a href="#">【理论】 深刻领会新发展理念的科学内涵</a> <span class="date">06-01</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div style="background-color: #f9f9f9;">
+        <div class="container section" style="background: transparent;">
+            <div class="section-header">
+                <h3>专题专栏</h3>
+            </div>
+            <div class="features-grid">
+                <div class="feature-box">
+                    <div class="feature-header">党史学习教育</div>
+                    <div class="feature-content">
+                        <img src="https://images.unsplash.com/photo-1533669955142-6a73332af4db?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="党史">
+                        <p style="font-size: 14px; color: #666;">学史明理、学史增信、学史崇德、学史力行。</p>
                     </div>
                 </div>
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://images.unsplash.com/photo-1621451537084-482c73073a0f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Ocean Conservation">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Ocean Conservation</h3>
-                        <p>Protecting marine ecosystems, reducing plastic pollution, and promoting sustainable fishing practices.</p>
-                        <a href="#" class="btn">Learn More</a>
+                <div class="feature-box">
+                    <div class="feature-header">我为群众办实事</div>
+                    <div class="feature-content">
+                        <img src="https://images.unsplash.com/photo-1590402494682-cd3fb53b1f70?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="实事">
+                        <p style="font-size: 14px; color: #666;">切实解决基层的困难事、群众的烦心事。</p>
                     </div>
                 </div>
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" alt="Renewable Energy">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Renewable Energy</h3>
-                        <p>Promoting solar, wind, and other clean energy sources to reduce dependence on fossil fuels.</p>
-                        <a href="#" class="btn">Learn More</a>
+                <div class="feature-box">
+                    <div class="feature-header">榜样的力量</div>
+                    <div class="feature-content">
+                        <img src="https://images.unsplash.com/photo-1551818255-e6e10975bc17?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="榜样">
+                        <p style="font-size: 14px; color: #666;">宣传先进典型，弘扬正气，激励担当。</p>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- CTA Section -->
-    <section class="cta" id="get-involved">
+    <footer>
         <div class="container">
-            <h2>Join Our Global Movement</h2>
-            <p>Together, we can create a sustainable future for generations to come. Every action counts, no matter how small.</p>
-            <a href="#" class="btn">Become a Member</a>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer id="contact">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Green Network</h3>
-                    <p>We are dedicated to protecting our planet through collaborative action, education, and sustainable solutions.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#initiatives">Initiatives</a></li>
-                        <li><a href="#get-involved">Get Involved</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Our Programs</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Reforestation</a></li>
-                        <li><a href="#">Ocean Cleanup</a></li>
-                        <li><a href="#">Wildlife Protection</a></li>
-                        <li><a href="#">Climate Education</a></li>
-                        <li><a href="#">Sustainable Agriculture</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Contact Us</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> Copper Creek Drive, New York</p>
-                    <p><i class="fas fa-phone"></i> +1 (312) 171-0771</p>
-                    <p><i class="fas fa-envelope"></i> support@greennetwork.org</p>
-                </div>
+            <div class="footer-links">
+                <a href="#">联系我们</a> | 
+                <a href="#">网站地图</a> | 
+                <a href="#">版权声明</a> |
+                <a href="#">友情链接</a>
             </div>
             <div class="copyright">
-                <p>&copy; 2025 Green Network. All rights reserved.</p>
+                <p>主办单位：XXX委员会 | 地址：中国XX省XX市XX路XX号</p>
+                <p>&copy; 2025 版权所有 | 建议使用 Chrome 或 Edge 浏览器访问</p>
             </div>
         </div>
     </footer>
 
-    <script>
-        // Mobile Menu Toggle
-        document.querySelector('.mobile-menu').addEventListener('click', function() {
-            document.querySelector('nav ul').classList.toggle('active');
-        });
-
-        // Counter Animation
-        function animateCounters() {
-            const counters = document.querySelectorAll('.counter');
-            const speed = 200; // The lower the slower
-            
-            counters.forEach(counter => {
-                const target = +counter.getAttribute('data-target');
-                const count = +counter.innerText;
-                
-                const inc = target / speed;
-                
-                if(count < target) {
-                    counter.innerText = Math.ceil(count + inc);
-                    setTimeout(animateCounters, 1);
-                } else {
-                    counter.innerText = target;
-                }
-            });
-        }
-
-        // Initialize counters when page loads
-        window.addEventListener('load', animateCounters);
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                    
-                    document.querySelector('nav ul').classList.remove('active');
-                }
-            });
-        });
-    </script>
 </body>
-
 </html>
