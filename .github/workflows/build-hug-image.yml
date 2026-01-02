@@ -1,50 +1,418 @@
-name: Build huggingface Image
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>不忘初心 牢记使命 | 党建宣传专题网</title>
+    <style>
+        /* --- 红色主题变量定义 --- */
+        :root {
+            /* 标准中国红参考色 */
+            --party-red: #ce0000; 
+            --party-dark-red: #a30000;
+            --party-gold: #f4d000; /* 金色点缀 */
+            --text-main: #333333;
+            --text-light: #666666;
+            --bg-light: #fffdfd; /* 极浅的红色倾向背景 */
+        }
 
-on:
-  push:
-    branches: [ hug ]
-    paths:
-      - 'Dockerfile'
-      - 'index.js'
-      - 'package.json'
-      - 'index.html'
-  pull_request:
-    branches: [ hug ]
-  workflow_dispatch:
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
+        body {
+            font-family: "SimSun", "Songti SC", "Microsoft YaHei", serif; /* 宋体/衬线体更显庄重 */
+            line-height: 1.6;
+            color: var(--text-main);
+            background-color: #f5f5f5;
+        }
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          ref: hug 
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
 
-      - name: Log in to GitHub Container Registry
-        uses: docker/login-action@v3
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+        /* --- 顶部 Header --- */
+        .top-bar {
+            background-color: var(--party-dark-red);
+            color: rgba(255,255,255,0.8);
+            padding: 8px 0;
+            font-size: 14px;
+            text-align: right;
+        }
 
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          push: true
-          tags: |
-            ghcr.io/${{ github.repository_owner }}/hugws:latest
-          labels: |
-            org.opencontainers.image.source=https://github.com/${{ github.repository }}
-            org.opencontainers.image.description=http server
-            org.opencontainers.image.licenses=MIT
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+        header {
+            background: url('https://images.unsplash.com/photo-1572916170617-66bc4242e24b?q=80&w=2000&auto=format&fit=crop') no-repeat center top; 
+            background-size: cover;
+            /* 注意：实际使用时建议替换为红绸带或纯红背景图 */
+            background-color: var(--party-red);
+            height: 120px;
+            display: flex;
+            align-items: center;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo-text h1 {
+            color: var(--party-gold);
+            font-size: 38px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+
+        .logo-text p {
+            color: white;
+            font-size: 16px;
+            letter-spacing: 5px;
+            margin-top: 5px;
+        }
+
+        /* --- 导航栏 --- */
+        nav {
+            background-color: var(--party-red);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            border-bottom: 3px solid var(--party-gold);
+        }
+
+        .nav-list {
+            display: flex;
+            justify-content: center;
+        }
+
+        .nav-list li {
+            flex: 1;
+            text-align: center;
+        }
+
+        .nav-list a {
+            display: block;
+            color: white;
+            padding: 18px 0;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .nav-list a:hover {
+            background-color: var(--party-dark-red);
+            color: var(--party-gold);
+        }
+
+        /* --- 轮播/Banner区域 --- */
+        .banner {
+            position: relative;
+            height: 500px;
+            background-color: #ddd;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            background-image: linear-gradient(rgba(163, 0, 0, 0.6), rgba(163, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1533235773822-2f0858e9944a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .banner-content h2 {
+            font-size: 56px;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .banner-content .subtitle {
+            font-size: 24px;
+            background-color: var(--party-gold);
+            color: var(--party-red);
+            padding: 10px 30px;
+            border-radius: 4px;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        /* --- 内容模块通用样式 --- */
+        .section {
+            padding: 60px 0;
+            background: white;
+            margin-bottom: 20px;
+        }
+
+        .section-header {
+            border-bottom: 2px solid #eee;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section-header h3 {
+            font-size: 26px;
+            color: var(--party-red);
+            display: inline-block;
+            border-bottom: 3px solid var(--party-red);
+            padding-bottom: 8px;
+            margin-bottom: -12px; /* 让红线盖住灰线 */
+        }
+
+        /* --- 新闻网格 --- */
+        .news-grid {
+            display: grid;
+            grid-template-columns: 40% 60%; /* 左图右文布局 */
+            gap: 30px;
+        }
+
+        .headline-news img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .headline-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 15px 0 10px;
+            color: var(--party-dark-red);
+        }
+
+        .news-list li {
+            border-bottom: 1px dashed #ddd;
+            padding: 12px 0;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .news-list li:before {
+            content: "■";
+            color: var(--party-red);
+            margin-right: 10px;
+            font-size: 12px;
+            vertical-align: middle;
+        }
+
+        .news-list a:hover {
+            color: var(--party-red);
+            text-decoration: underline;
+        }
+
+        .date { color: #999; font-size: 14px; }
+
+        /* --- 专题展示 (三列) --- */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .feature-box {
+            border: 1px solid #eee;
+            background: #fff;
+            transition: 0.3s;
+        }
+
+        .feature-box:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-color: var(--party-red);
+        }
+
+        .feature-header {
+            background: var(--party-red);
+            color: white;
+            padding: 10px 15px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .feature-content {
+            padding: 20px;
+        }
+        
+        .feature-content img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+
+        /* --- 精神语录 --- */
+        .quote-section {
+            background-color: #fcf1f1; /* 浅红背景 */
+            padding: 50px 0;
+            text-align: center;
+            border-top: 1px solid #eecaca;
+            border-bottom: 1px solid #eecaca;
+        }
+
+        .quote-text {
+            font-size: 28px;
+            color: var(--party-red);
+            font-weight: bold;
+            font-family: "Kaiti SC", "楷体", serif;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--party-dark-red);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.8);
+            margin: 0 10px;
+        }
+
+        .copyright {
+            margin-top: 20px;
+            font-size: 14px;
+            opacity: 0.7;
+        }
+
+        /* --- 响应式 --- */
+        @media (max-width: 768px) {
+            .news-grid { grid-template-columns: 1fr; }
+            .features-grid { grid-template-columns: 1fr; }
+            .nav-list { flex-direction: column; }
+            .banner-content h2 { font-size: 32px; }
+            header { height: auto; padding: 20px 0; }
+            .header-content { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <div class="container">
+            <span>今天是：2025年6月15日 星期日 | 欢迎访问本站</span>
+        </div>
+    </div>
+
+    <header>
+        <div class="container header-content">
+            <div style="width: 80px; height: 80px; background: var(--party-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--party-red); font-size: 40px; font-weight: bold;">☭</div>
+            <div class="logo-text">
+                <h1>红旗飘扬</h1>
+                <p>新时代党建宣传与学习教育平台</p>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul class="nav-list">
+                <li><a href="#">首页</a></li>
+                <li><a href="#">党建要闻</a></li>
+                <li><a href="#">理论学习</a></li>
+                <li><a href="#">党史长廊</a></li>
+                <li><a href="#">组织建设</a></li>
+                <li><a href="#">风采展示</a></li>
+                <li><a href="#">廉政建设</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="banner">
+        <div class="banner-content">
+            <h2>不忘初心 牢记使命</h2>
+            <div class="subtitle">为中国人民谋幸福 为中华民族谋复兴</div>
+        </div>
+    </section>
+
+    <section class="quote-section">
+        <div class="container">
+            <div class="quote-text">“心中的信仰，脚下的力量”</div>
+        </div>
+    </section>
+
+    <div class="container section">
+        <div class="news-grid">
+            <div class="headline-news">
+                <div class="section-header">
+                    <h3>图片报道</h3>
+                </div>
+                <img src="https://images.unsplash.com/photo-1516216628859-9bcce59d6909?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="会议图片">
+                <div class="headline-title">
+                    <a href="#">深入学习贯彻重要精神，凝心聚力促发展</a>
+                </div>
+                <p style="color: #666; font-size: 14px;">近日，我单位组织全体党员干部召开了专题学习会议，深入探讨了...</p>
+            </div>
+
+            <div class="news-list-box">
+                <div class="section-header">
+                    <h3>党建动态</h3>
+                    <a href="#" style="float: right; font-size: 14px; color: #999; margin-top: 10px;">更多 &gt;</a>
+                </div>
+                <ul class="news-list">
+                    <li><a href="#">【学习】 全面推进基层党组织标准化规范化建设</a> <span class="date">06-14</span></li>
+                    <li><a href="#">【活动】 开展“红色之旅”主题党日活动圆满结束</a> <span class="date">06-12</span></li>
+                    <li><a href="#">【纪律】 严明政治纪律，筑牢思想防线专题讲座</a> <span class="date">06-10</span></li>
+                    <li><a href="#">【模范】 学习身边榜样，争做合格党员</a> <span class="date">06-08</span></li>
+                    <li><a href="#">【通知】 关于举办党史知识竞赛的通知</a> <span class="date">06-05</span></li>
+                    <li><a href="#">【理论】 深刻领会新发展理念的科学内涵</a> <span class="date">06-01</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div style="background-color: #f9f9f9;">
+        <div class="container section" style="background: transparent;">
+            <div class="section-header">
+                <h3>专题专栏</h3>
+            </div>
+            <div class="features-grid">
+                <div class="feature-box">
+                    <div class="feature-header">党史学习教育</div>
+                    <div class="feature-content">
+                        <img src="https://images.unsplash.com/photo-1533669955142-6a73332af4db?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="党史">
+                        <p style="font-size: 14px; color: #666;">学史明理、学史增信、学史崇德、学史力行。</p>
+                    </div>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-header">我为群众办实事</div>
+                    <div class="feature-content">
+                        <img src="https://images.unsplash.com/photo-1590402494682-cd3fb53b1f70?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="实事">
+                        <p style="font-size: 14px; color: #666;">切实解决基层的困难事、群众的烦心事。</p>
+                    </div>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-header">榜样的力量</div>
+                    <div class="feature-content">
+                        <img src="https://images.unsplash.com/photo-1551818255-e6e10975bc17?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="榜样">
+                        <p style="font-size: 14px; color: #666;">宣传先进典型，弘扬正气，激励担当。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#">联系我们</a> | 
+                <a href="#">网站地图</a> | 
+                <a href="#">版权声明</a> |
+                <a href="#">友情链接</a>
+            </div>
+            <div class="copyright">
+                <p>主办单位：XXX委员会 | 地址：中国XX省XX市XX路XX号</p>
+                <p>&copy; 2025 版权所有 | 建议使用 Chrome 或 Edge 浏览器访问</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
